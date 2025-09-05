@@ -1,0 +1,153 @@
+.sidebar {
+  background-color: #171717;
+  color: #b4b4b4;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: width 0.3s ease-in-out;
+  overflow-x: hidden;
+  white-space: nowrap;
+  position: relative;
+  z-index: 1000;
+}
+
+/* Style for the OPEN state */
+.sidebar.open {
+  width: 320px;
+}
+
+/* Style for the COLLAPSED/CLOSED state */
+.sidebar.closed {
+  width: 80px; /* Give it a fixed width instead of 0 */
+}
+
+/* --- Hiding Text and Centering Icons --- */
+
+.sidebar.closed .logo {
+  display: none;
+}
+
+.sidebar.closed .newChat span:last-child {
+  display: none;
+}
+
+.sidebar.closed .newChat {
+  justify-content: center;
+}
+
+.sidebar.closed .history-title {
+  display: none;
+}
+
+/* NEW RULE: Hide the "Recent" label when closed */
+.sidebar.closed .recent-label {
+  display: none;
+}
+
+.sidebar.closed .fa-bars {
+  margin: 0 auto;
+}
+
+/* --- General and Reset Styles --- */
+
+.fa-bars {
+  cursor: pointer;
+  padding: 5px;
+}
+
+button.sidebarHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: transparent;
+  border: solid 0.5px rgba(255, 255, 255, 0.1);
+}
+
+.logo {
+  height: 25px;
+  width: 25px;
+  background-color: #fff;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.history {
+  margin: 10px;
+  padding: 10px 0;
+  height: 100%;
+  overflow-y: auto;
+}
+
+/* NEW: Style for the "Recent" label */
+.recent-label {
+  opacity: 0.5;
+  font-size: 0.85rem;
+  margin: 10px;
+  padding: 0 5px; /* Give it a little padding */
+}
+
+.history li {
+  list-style-type: none;
+  cursor: pointer;
+  padding: 10px 15px;
+  margin-bottom: 0.3rem;
+  font-size: 14px;
+  border-radius: 10px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.history li:hover {
+  background-color: rgba(180, 180, 180, 0.05);
+}
+
+.sign {
+  padding: 10px;
+  margin: 10px;
+  font-size: 14px;
+  text-align: center;
+  border-top: solid 0.25px rgba(255, 255, 255, 0.5);
+}
+
+.fa-trash {
+  opacity: 0;
+  margin-left: auto;
+}
+
+.history li:hover .fa-trash {
+  opacity: 1;
+  color: #fff;
+}
+
+.fa-trash:hover {
+  color: #f87171 !important;
+}
+
+.history::-webkit-scrollbar {
+  display: none;
+}
+
+.highlighted {
+  background-color: rgba(180, 180, 180, 0.05);
+  border-radius: 10px;
+}
+
+.newChat {
+  font-size: 0.9rem;
+  cursor: pointer;
+  align-items: center;
+  display: flex;
+  gap: 0.5rem;
+  padding: 1rem;
+  margin: 0 10px;
+  border-radius: 10px;
+}
+
+.newChat:hover {
+  background-color: rgba(180, 180, 180, 0.05);
+}
