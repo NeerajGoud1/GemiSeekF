@@ -1,13 +1,16 @@
 import express from "express";
 import Thread from "../models/Thread.js";
 import { getGeminiResponse } from "../utils/gemini.js";
+import { authenticate } from "../utils/Verify.js";
 
 const router = express.Router();
 
-router.get("/thread", async (req, res) => {
+router.get("/thread", authenticate, async (req, res) => {
   //provides all the threads for the title purpose
   try {
-    const threads = await Thread.find({}).sort({ updatedAt: -1 });
+    const threads = await Thread.find({ user: req.userId }).sort({
+      updatedAt: -1,
+    });
     //descending order of updatedAt...most recent data on top
     res.json(threads);
   } catch (err) {
@@ -53,7 +56,7 @@ router.delete("/thread/:threadId", async (req, res) => {
   }
 });
 
-router.post("/chat", async (req, res) => {
+router.post("/chat", authenticate, async (req, res) => {
   // makes actual requests to gemini
   const { threadId, message } = req.body;
 
@@ -70,6 +73,7 @@ router.post("/chat", async (req, res) => {
         threadId,
         title: message,
         messages: [{ role: "user", content: message }],
+        user: req.userId,
       });
     } else {
       thread.messages.push({ role: "user", content: message });

@@ -1,9 +1,13 @@
 import { useState } from "react";
 import "./App.css";
-import Chatwindow from "./components/Chatwindow";
-import Sidebar from "./components/Sidebar";
 import { MyContext } from "./MyContext";
 import { v1 as uuidv1 } from "uuid";
+import { Route, Routes } from "react-router-dom";
+import LandingPage from "./LandingPage";
+import GemiSeek from "./components/GemiSeek";
+import Sidebar from "./components/Sidebar";
+import Chatwindow from "./components/Chatwindow";
+import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
   const [prompt, setPrompt] = useState("");
@@ -29,12 +33,21 @@ function App() {
   };
   return (
     <>
-      <div className="app">
-        <MyContext.Provider value={providervalues}>
-          <Sidebar />
-          <Chatwindow />
-        </MyContext.Provider>
-      </div>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route
+          path="/chat"
+          element={
+            <div className="app">
+              <MyContext.Provider value={providervalues}>
+                <ProtectedRoute>
+                  <GemiSeek />
+                </ProtectedRoute>
+              </MyContext.Provider>
+            </div>
+          }
+        />
+      </Routes>
     </>
   );
 }

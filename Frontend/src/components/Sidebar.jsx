@@ -31,7 +31,13 @@ function Sidebar() {
 
   const getAllThreads = async () => {
     try {
-      const response = await fetch("http://localhost:8080/api/thread");
+      const token = localStorage.getItem("token");
+      const response = await fetch("http://localhost:8080/api/thread", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
       const res = await response.json();
       const filteredData = res.map((thread) => ({
         threadId: thread.threadId,

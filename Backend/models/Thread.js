@@ -38,6 +38,11 @@ const ThreadSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+
+  user: {
+    type: String,
+    required: true,
+  },
 });
 
 export default mongoose.model("Thread", ThreadSchema);

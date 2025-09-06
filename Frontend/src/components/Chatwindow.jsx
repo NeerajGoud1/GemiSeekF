@@ -4,8 +4,27 @@ import { useContext, useState, useEffect, useRef } from "react";
 import { MyContext } from "../MyContext";
 import { BeatLoader } from "react-spinners";
 import Vapi from "@vapi-ai/web";
+import { getAuth, signOut } from "firebase/auth";
+import { app } from "../Firebase";
+import { useNavigate } from "react-router-dom";
+
+const auth = getAuth(app);
 
 function Chatwindow() {
+  const navigate = useNavigate();
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+
+      // clear token from localStorage
+      localStorage.removeItem("token");
+      console.log("User signed out successfully");
+      navigate("/"); // redirect to landing page
+    } catch (err) {
+      console.error("Error signing out:", err);
+    }
+  };
+
   //vapi Integration
   const vapiRef = useRef(null);
   const [isVapiActive, setIsVapiActive] = useState(false);
@@ -85,10 +104,12 @@ function Chatwindow() {
     if (!prompt.trim()) return;
     setNewChat(false);
     setLoading(true);
+    let token = localStorage.getItem("token");
     const options = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         message: prompt,
@@ -151,7 +172,7 @@ function Chatwindow() {
             <i className="fa-solid fa-gear"></i> Settings
           </div>
 
-          <div className="dropDownItem">
+          <div className="dropDownItem" onClick={handleLogout}>
             <i className="fa-solid fa-arrow-right-from-bracket"></i> Log out
           </div>
         </div>

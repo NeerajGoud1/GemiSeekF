@@ -1,35 +1,35 @@
 .chats {
-  max-width: 700px;
-  overflow-y: scroll;
-  padding: 8rem;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+  max-width: 700px !important;
+  overflow-y: scroll !important;
+  padding: 8rem !important;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
 }
 
 .chats::-webkit-scrollbar {
   display: none;
 }
 .userDiv {
-  display: flex;
-  justify-content: flex-end;
-  font-size: 0.9rem;
+  display: flex !important;
+  justify-content: flex-end !important;
+  font-size: 0.9rem !important;
 }
 
 .gptDiv {
-  text-align: left;
-  font-size: 0.9rem;
+  text-align: left !important;
+  font-size: 0.9rem !important;
 }
 
 .userMessage {
   background-color: #323232;
   color: white;
-  padding: 10px 16px;
-  border-radius: 16px;
-  margin-left: 15rem;
-  max-width: 60%;
-  width: fit-content;
-  word-wrap: break-word;
-  text-align: left;
+  padding: 10px 16px !important;
+  border-radius: 16px !important;
+  margin-left: 15rem !important;
+  max-width: 60% !important;
+  width: fit-content !important;
+  word-wrap: break-word !important;
+  text-align: left !important;
 }
 
 /* .gptMessage {
@@ -44,10 +44,10 @@
 
 .hljs {
   border-radius: 14px !important;
-  line-height: 1.5rem;
+  line-height: 1.5rem !important;
 }
 
 pre {
-  white-space: pre-wrap;
-  line-height: 1.5rem;
+  white-space: pre-wrap !important;
+  line-height: 1.5rem !important;
 }
