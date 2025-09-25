@@ -1,5 +1,5 @@
 .chats {
-  max-width: 700px !important;
+  max-width: 950px !important;
   overflow-y: scroll !important;
   padding: 8rem !important;
   scrollbar-width: none !important;
@@ -13,11 +13,13 @@
   display: flex !important;
   justify-content: flex-end !important;
   font-size: 0.9rem !important;
+  margin-bottom: 2rem;
 }
 
 .gptDiv {
   text-align: left !important;
   font-size: 0.9rem !important;
+  line-height: 1.5rem !important;
 }
 
 .userMessage {

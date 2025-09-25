@@ -52,7 +52,11 @@ function Chat() {
 
   return (
     <>
-      {newChat && <h1>Start a New Chat!</h1>}
+      {newChat && (
+        <h1 style={{ fontSize: "1.5rem", fontWeight: "bold" }}>
+          Start a New Chat!
+        </h1>
+      )}
       <div className="chats" ref={chatsContainerRef}>
         {/* Show all messages except last one */}
         {prevChats?.slice(0, -1).map((chat, idx) => (
