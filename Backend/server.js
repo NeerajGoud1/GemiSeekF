@@ -4,7 +4,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import chatRoutes from "./routes/chat.js";
 import Thread from "./models/Thread.js";
-import { verify } from "./utils/Verify.js";
+import { authenticate } from "./utils/Verify.js";
 
 import admin from "firebase-admin";
 const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_JSON);
@@ -19,7 +19,6 @@ const PORT = 8080;
 app.use(express.json());
 app.use(cors());
 
-app.use("/api/verify", verify);
 
 app.use("/api", chatRoutes);
 
